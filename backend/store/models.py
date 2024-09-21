@@ -5,6 +5,11 @@ from django.contrib.auth.models import User
 
 class Order(models.Model):
     user = models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE, related_name='user')
+    date = models.DateField()
+    netTotal = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.user.username}_{self.date}"
 
 class Product(models.Model):
     order = models.ForeignKey(Order, null=True, blank=True,on_delete=models.CASCADE, related_name='order')
