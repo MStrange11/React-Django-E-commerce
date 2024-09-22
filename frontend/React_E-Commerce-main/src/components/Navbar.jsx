@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Cookies from 'js-cookie'
 
 const Navbar = () => {
     const state = useSelector(state => state.handleCart)
@@ -26,10 +27,19 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/contact">Contact</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/my-order">MY orders</NavLink>
+                        </li>
                     </ul>
                     <div className="buttons text-center">
-                        <NavLink to="/login" className="btn btn-outline-dark m-2"><i className="fa fa-sign-in-alt mr-1"></i> Login</NavLink>
-                        <NavLink to="/register" className="btn btn-outline-dark m-2"><i className="fa fa-user-plus mr-1"></i> Register</NavLink>
+                        {!Cookies.get("user") ? (
+                            <>
+                                <NavLink to="/login" className="btn btn-outline-dark m-2"><i className="fa fa-sign-in-alt mr-1"></i> Login</NavLink>
+                                <NavLink to="/register" className="btn btn-outline-dark m-2"><i className="fa fa-user-plus mr-1"></i> Register</NavLink>
+                            </>
+                        ) :
+                            <NavLink to="/account" className="btn btn-outline-dark m-2"><i className="fa fa-user mr-1"></i> Account</NavLink>
+                        }
                         <NavLink to="/cart" className="btn btn-outline-dark m-2"><i className="fa fa-cart-shopping mr-1"></i> Cart ({state.length}) </NavLink>
                     </div>
                 </div>

@@ -110,7 +110,8 @@ class OrderView(APIView):
                 # Serialize the products
                 products_serializer = ProductSerializer(products, many=True)
                 # Append the serialized order and its products to the response data
-                response_data.append({**order, "products": products_serializer.data})
+                response_data.append(
+                    {**order, "products": products_serializer.data})
 
             # Return the serialized data with a 200 OK status
             return Response(response_data, status=status.HTTP_200_OK)
@@ -142,7 +143,7 @@ class LoginView(APIView):
                 username=serializer.data['username'], password=serializer.data['password'])
             if user:
                 token, _ = Token.objects.get_or_create(user=user)
-                return Response({"token": str(token)}, status=status.HTTP_202_ACCEPTED)
+                return Response({"token": str(token), "email":user.email}, status=status.HTTP_202_ACCEPTED)
             return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
         return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -150,6 +151,7 @@ class LoginView(APIView):
 class RegisterView(APIView):
     def post(self, request):
         data = request.data
+        print(data)
         serial = RegisterSerializer(data=data)
 
         # Check if the serialized data is valid
