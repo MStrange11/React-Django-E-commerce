@@ -8,19 +8,7 @@ const AboutPage = () => {
         <h1 className="text-center">About Us</h1>
         <hr />
         <p className="lead text-center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-          facere doloremque veritatis odit similique sequi. Odit amet fuga nam
-          quam quasi facilis sed doloremque saepe sint perspiciatis explicabo
-          totam vero quas provident ipsam, veritatis nostrum velit quos
-          recusandae est mollitia esse fugit dolore laudantium. Ex vel explicabo
-          earum unde eligendi autem praesentium, doloremque distinctio nesciunt
-          porro tempore quis eaque labore voluptatibus ea necessitatibus
-          exercitationem tempora molestias. Ad consequuntur veniam sequi ullam
-          tempore vel tenetur soluta dolore sunt maxime aliquam corporis est,
-          quo saepe dolorem optio minus sint nemo totam dolorum! Reprehenderit
-          delectus expedita a alias nam recusandae illo debitis repellat libero,
-          quasi explicabo molestiae saepe, dolorem tempore itaque eveniet quam
-          dignissimos blanditiis excepturi harum numquam vel nihil? Ipsum
+        At Wander Ways, we believe that every journey begins with the right gear. Our mission is to provide travelers with stylish, durable, and functional travel bags and accessories that make every adventure seamless. Whether you're exploring new cities, trekking through the wilderness, or jet-setting across the globe, our products are designed to meet your needs with comfort and reliability. We are passionate about travel, and our curated selection reflects our commitment to quality, innovation, and sustainability. Wander Ways is more than just an online store – it's a community for those who seek to wander freely, explore boldly, and travel smartly. Join us on this journey and discover gear that keeps up with your wanderlust!
         </p>
 
         <h2 className="text-center py-4">Our Products</h2>
