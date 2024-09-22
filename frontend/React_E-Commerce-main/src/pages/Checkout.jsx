@@ -1,9 +1,10 @@
 import React from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CreateAuthAxios from "../components/AxiosSetup";
 const Checkout = () => {
+  const navigate = useNavigate()
   const state = useSelector((state) => state.handleCart);
 
   function confirm_order(subtotal) {
@@ -21,7 +22,7 @@ const Checkout = () => {
       axios.post('confirm-order/', data)
         .then((res) => {
           console.log(res.data);
-
+          navigate('/my-order')
         })
         .catch((err) => {
           console.log(err);

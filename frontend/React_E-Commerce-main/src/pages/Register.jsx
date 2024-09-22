@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Footer, Navbar } from "../components";
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { baseURL } from '../components/AxiosSetup';
 import axios from 'axios';
 const Register = () => {
@@ -17,7 +17,18 @@ const Register = () => {
         axios.post(baseURL + 'register/', registrationDetails)
             .then((res) => {
                 console.log(res.data);
-                navigate('/login')
+
+                let loginDetails = { username: registrationDetails.username, password: registrationDetails.password }
+                axios.post(baseURL + 'login/', loginDetails)
+                    .then((res) => {
+                        Cookies.set("userToken", res.data.token, { expires: 1 });
+                        Cookies.set("user", JSON.stringify({ ...loginDetails, email: res.data.email }), { expires: 1 });
+                        navigate('/')
+                    })
+                    .catch((err) => {
+                        console.log(err);
+
+                    })
             })
             .catch((err) => {
                 console.log(err);
