@@ -36,11 +36,11 @@ const Order = ({ order, key }) => {
                                     show(k);
                                 }}
                             >
-                                <div className="image mb-3">
+                                <div className="image mb-3 left">
                                     <img
-                                        src={`./media/${product.title}`}
+                                        src={product.image}
                                         alt={product.title}
-                                        className="w-full h-48 object-cover rounded-lg"
+                                        className="w-50 h-50 object-cover rounded-lg"
                                     />
                                 </div>
                                 <div className="title font-bold text-gray-800 mb-2">
@@ -49,8 +49,11 @@ const Order = ({ order, key }) => {
                                 <div className="category text-sm text-gray-500 mb-1">
                                     Category: {product.category}
                                 </div>
+                                <div className="quantity text-lg font-semibold text-gray-800">
+                                    Qty : {product.qty}
+                                </div>
                                 <div className="price text-lg font-semibold text-gray-800">
-                                    Price: ${product.price}
+                                    Price : ${product.price*product.qty }
                                 </div>
                             </div>
 

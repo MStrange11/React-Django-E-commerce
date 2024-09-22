@@ -66,10 +66,11 @@ class ConfirmOrder(APIView):
                 Product.objects.create(
                     order=order,
                     title=product_data.get('title'),
+                    image=product_data.get('image'),
                     price=product_data.get('price'),
-                    rate=product_data.get('rate'),
+                    qty=product_data.get('qty'),
                     # Default to empty string if 'des' is missing
-                    description=product_data.get('des', ''),
+                    description=product_data.get('description', ''),
                     category=product_data.get('category')
                 )
 
