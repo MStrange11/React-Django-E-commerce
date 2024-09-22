@@ -130,6 +130,16 @@ class ProductView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+class WarhouseView(APIView):
+    def get(self, request):
+        try:
+            products = Warhouse.objects.all()
+            serializer = WarhouseSerializer(products, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LoginView(APIView):

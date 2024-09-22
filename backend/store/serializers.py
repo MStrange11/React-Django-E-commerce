@@ -13,6 +13,11 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = "__all__"
 
+class WarhouseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Warhouse
+        fields = "__all__"
+
         
 
 class LoginSerializer(serializers.Serializer):
