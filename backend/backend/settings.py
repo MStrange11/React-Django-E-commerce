@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-1&bb8w$404g8y$wdk7nl!r6e4%@k_#fe!huydyzf)m$scw47vy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 #add
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://localhost:3001',
 )
 
 MIDDLEWARE = [

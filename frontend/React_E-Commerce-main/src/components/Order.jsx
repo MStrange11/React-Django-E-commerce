@@ -17,7 +17,7 @@ const Order = ({ order, key }) => {
                     Order Date: {order.date}
                 </div>
                 <div className="text-lg font-semibold text-gray-600">
-                    Total: ${order.netTotal}
+                    Total: <i class="fa-solid fa-indian-rupee-sign"></i>{order.netTotal}
                 </div>
             </div>
 
@@ -53,7 +53,7 @@ const Order = ({ order, key }) => {
                                     Qty : {product.qty}
                                 </div>
                                 <div className="price text-lg font-semibold text-gray-800">
-                                    Price : ${product.price*product.qty }
+                                    Price : <i class="fa-solid fa-indian-rupee-sign"></i>{product.price*product.qty }
                                 </div>
                             </div>
 
