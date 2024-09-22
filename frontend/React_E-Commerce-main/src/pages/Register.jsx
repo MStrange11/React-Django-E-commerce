@@ -3,6 +3,8 @@ import { Footer, Navbar } from "../components";
 import { Link, useNavigate } from 'react-router-dom';
 import { baseURL } from '../components/AxiosSetup';
 import axios from 'axios';
+import Cookies from "js-cookie";
+
 const Register = () => {
     const navigate = useNavigate()
     const [registrationDetails, setRegistrationDetails] = useState({});
