@@ -12,7 +12,7 @@ const Footer = () => {
              WanderWays */}
               <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/"><i class="fa-solid fa-store"></i> &nbsp; WanderWays</NavLink>
             </p>
-            
+            <p>&copy; 2024 Wander Ways. All rights reserved. </p>
           </div>
         </div>
       </footer>

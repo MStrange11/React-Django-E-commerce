@@ -3,10 +3,23 @@ import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CreateAuthAxios from "../components/AxiosSetup";
+import { useDispatch } from "react-redux";
+
 const Checkout = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.handleCart);
 
+  const clearCart = () => {
+    return {
+      type: "CLEARCART"
+    };
+  };
+
+    // Function to clear the cart
+  const handleClearCart = () => {
+      dispatch(clearCart());
+    };
   function confirm_order(subtotal) {
     // e.preventDefault()
     console.log(subtotal);
@@ -22,6 +35,7 @@ const Checkout = () => {
       axios.post('confirm-order/', data)
         .then((res) => {
           console.log(res.data);
+          handleClearCart();
           navigate('/my-order')
         })
         .catch((err) => {
@@ -69,18 +83,18 @@ const Checkout = () => {
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                      Products ({totalItems})<span>${Math.round(subtotal)}</span>
+                      Products ({totalItems})<span><i class="fa-solid fa-indian-rupee-sign"></i> {Math.round(subtotal)}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                       Shipping
-                      <span>${shipping}</span>
+                      <span><i class="fa-solid fa-indian-rupee-sign"></i> {shipping}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <div>
                         <strong>Total amount</strong>
                       </div>
                       <span>
-                        <strong>${Math.round(subtotal + shipping)}</strong>
+                        <strong><i class="fa-solid fa-indian-rupee-sign"></i> {Math.round(subtotal + shipping)}</strong>
                       </span>
                     </li>
                   </ul>
@@ -192,16 +206,18 @@ const Checkout = () => {
                       </div>
 
                       <div className="col-md-4 my-1">
-                        <label for="state" className="form-label">
+                      <label for="state" className="form-label">
                           State
                         </label>
-                        <br />
-                        <select className="form-select" id="state" required>
-                          <option value="">Choose...</option>
-                          <option>Punjab</option>
-                        </select>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="state"
+                          placeholder="state"
+                          required
+                        />
                         <div className="invalid-feedback">
-                          Please provide a valid state.
+                          Please enter your state.
                         </div>
                       </div>
 
@@ -316,6 +332,9 @@ const Checkout = () => {
       </>
     );
   };
+ 
+
+  
   return (
     <>
       <Navbar />

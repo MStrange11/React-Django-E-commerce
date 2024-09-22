@@ -121,15 +121,15 @@ class OrderView(APIView):
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ProductView(APIView):
-    def get(self, request):
-        try:
-            products = Product.objects.all()
-            serializer = ProductSerializer(products, many=True)
-            # Return the profile data
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+# class ProductView(APIView):
+#     def get(self, request):
+#         try:
+#             products = Product.objects.all()
+#             serializer = ProductSerializer(products, many=True)
+#             # Return the profile data
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         except Exception as e:
+#             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
 
 class WarhouseView(APIView):
@@ -141,6 +141,15 @@ class WarhouseView(APIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
+class getWarhouseView(APIView):
+    def get(self, request,id):
+        try:
+            products = Warhouse.objects.get(pk=id)
+            serializer = WarhouseSerializer(products)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
     def post(self, request):

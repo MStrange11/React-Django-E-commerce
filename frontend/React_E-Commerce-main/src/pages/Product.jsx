@@ -4,11 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
-
+import axios from "axios";
+import { baseURL } from '../components/AxiosSetup';
 import { Footer, Navbar } from "../components";
 
 const Product = () => {
   const { id } = useParams();
+  // console.log(id)
   const [product, setProduct] = useState([]);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,23 +21,47 @@ const Product = () => {
   const addProduct = (product) => {
     dispatch(addCart(product));
   };
+  function get_product() {
+    axios.get(baseURL + `warhose/${id}/`)
+      .then((res) => {
+       console.log(res.data);
+       setProduct(res.data);
+       setLoading(false);
+      })
+      .catch((err) => {
+        console.log("single"+err);
+      })
+  }
+  function get_products() {
+    axios.get(baseURL + 'warhose/')
+      .then((res) => {
+       console.log(res.data);
+       setSimilarProducts(res.data);
+      })
+      .catch((err) => {
+        console.log("warhose"+err);
+      })
+  }
+
 
   useEffect(() => {
-    const getProduct = async () => {
-      setLoading(true);
-      setLoading2(true);
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
-      setLoading(false);
-      const response2 = await fetch(
-        `https://fakestoreapi.com/products/category/${data.category}`
-      );
-      const data2 = await response2.json();
-      setSimilarProducts(data2);
-      setLoading2(false);
-    };
-    getProduct();
+    // const getProduct = async () => {
+    //   setLoading(true);
+    //   setLoading2(true);
+    //   const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+    //   const data = await response.json();
+    //   setProduct(data);
+    //   setLoading(false);
+    //   const response2 = await fetch(
+    //     `https://fakestoreapi.com/products/category/${data.category}`
+    //   );
+    //   const data2 = await response2.json();
+    //   setSimilarProducts(data2);
+    //   setLoading2(false);
+    // };
+    // getProduct();
+    get_product();
+    get_products();
   }, [id]);
 
   const Loading = () => {
@@ -78,11 +104,11 @@ const Product = () => {
             <div className="col-md-6 col-md-6 py-5">
               <h4 className="text-uppercase text-muted">{product.category}</h4>
               <h1 className="display-5">{product.title}</h1>
-              <p className="lead">
+              {/* <p className="lead">
                 {product.rating && product.rating.rate}{" "}
                 <i className="fa fa-star"></i>
-              </p>
-              <h3 className="display-6  my-4">${product.price}</h3>
+              </p> */}
+              <h3 className="display-6  my-4"><i class="fa-solid fa-indian-rupee-sign"></i> {product.price}</h3>
               <p className="lead">{product.description}</p>
               <button
                 className="btn btn-outline-dark"

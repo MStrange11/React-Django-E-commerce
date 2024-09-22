@@ -40,7 +40,7 @@ const Order = ({ order, key }) => {
                                     <img
                                         src={product.image}
                                         alt={product.title}
-                                        className="w-50 h-50 object-cover rounded-lg"
+                                        className="w-20 h-20 object-cover rounded-lg"
                                     />
                                 </div>
                                 <div className="title font-bold text-gray-800 mb-2">
