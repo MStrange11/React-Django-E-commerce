@@ -39,6 +39,8 @@ const Cart = () => {
     });
 
     state.map((item) => {
+      console.log(item);
+      
       return (totalItems += item.qty);
     });
     return (

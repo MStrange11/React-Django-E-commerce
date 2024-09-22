@@ -19,16 +19,13 @@ const MyOrder = () => {
                 .then((res) => {
                     setOrders(res.data)
                     console.log(res.data);
-
                 })
                 .catch((err) => {
                     console.log(err);
-
                 })
         }
         else {
             navigate("/login");
-
         }
     }, [])
 

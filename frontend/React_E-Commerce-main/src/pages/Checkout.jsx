@@ -1,9 +1,35 @@
 import React from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import CreateAuthAxios from "../components/AxiosSetup";
 const Checkout = () => {
+  const navigate = useNavigate()
   const state = useSelector((state) => state.handleCart);
+
+  function confirm_order(subtotal) {
+    // e.preventDefault()
+    console.log(subtotal);
+
+    const axios = CreateAuthAxios()
+    if (axios) {
+      const data = {
+        order: {
+          netTotal: subtotal
+        },
+        products: state
+      }
+      axios.post('confirm-order/', data)
+        .then((res) => {
+          console.log(res.data);
+          navigate('/my-order')
+        })
+        .catch((err) => {
+          console.log(err);
+
+        })
+    }
+  }
 
   const EmptyCart = () => {
     return (
@@ -67,7 +93,11 @@ const Checkout = () => {
                   <h4 className="mb-0">Billing address</h4>
                 </div>
                 <div className="card-body">
-                  <form className="needs-validation" novalidate>
+                  <form className="needs-validation"
+                    onSubmit={() => {
+                      confirm_order(subtotal)
+                    }}
+                  >
                     <div className="row g-3">
                       <div className="col-sm-6 my-1">
                         <label for="firstName" className="form-label">
@@ -269,7 +299,11 @@ const Checkout = () => {
 
                     <button
                       className="w-100 btn btn-primary "
-                      type="submit" disabled
+                      type="submit"
+                      onClick={() => {
+                        confirm_order(subtotal)
+                      }
+                      }
                     >
                       Continue to checkout
                     </button>

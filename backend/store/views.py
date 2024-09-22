@@ -66,10 +66,11 @@ class ConfirmOrder(APIView):
                 Product.objects.create(
                     order=order,
                     title=product_data.get('title'),
+                    image=product_data.get('image'),
                     price=product_data.get('price'),
-                    rate=product_data.get('rate'),
+                    qty=product_data.get('qty'),
                     # Default to empty string if 'des' is missing
-                    description=product_data.get('des', ''),
+                    description=product_data.get('description', ''),
                     category=product_data.get('category')
                 )
 
@@ -126,6 +127,16 @@ class ProductView(APIView):
             products = Product.objects.all()
             serializer = ProductSerializer(products, many=True)
             # Return the profile data
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+class WarhouseView(APIView):
+    def get(self, request):
+        try:
+            products = Warhouse.objects.all()
+            serializer = WarhouseSerializer(products, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
