@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 const Login = () => {
   const navigate = useNavigate()
   const [loginDetails, setLoginDetails] = useState({});
+  const [error, setError] = useState('');
 
   function loginChangeHandler(e) {
     const { name, value } = e.target;
@@ -25,6 +26,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+        setError(err);
 
       })
   }

@@ -10,7 +10,7 @@ const Footer = () => {
             <p className="mb-3 mb-md-0"> 
             {/* <i class="fa-solid fa-cart-shopping"></i> &nbsp;
              WanderWays */}
-              <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/"><i class="fa-solid fa-cart-shopping"></i> &nbsp; WanderWays</NavLink>
+              <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/"><i class="fa-solid fa-store"></i> &nbsp; WanderWays</NavLink>
             </p>
             
           </div>
